@@ -15,7 +15,7 @@ prompt_template = ChatPromptTemplate.from_messages([
 ])
 
 # 2. Create model
-model = Ollama(model="llama2")
+model = Ollama(model="llama3.1")
 
 # 3. Create parser
 parser = StrOutputParser()
