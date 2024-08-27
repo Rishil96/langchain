@@ -3,9 +3,11 @@ from typing import List
 from fastapi import FastAPI
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.output_parsers import StrOutputParser
-from langchain_community.llms.ollama import Ollama
+from langchain_google_genai import ChatGoogleGenerativeAI
 from langserve import add_routes
+from dotenv import load_dotenv
 
+load_dotenv()
 
 # 1. Create a prompt template
 system_template = "Translate the following into {language}:"
@@ -15,7 +17,7 @@ prompt_template = ChatPromptTemplate.from_messages([
 ])
 
 # 2. Create model
-model = Ollama(model="llama3.1")
+model = ChatGoogleGenerativeAI(model="gemini-pro", convert_system_message_to_human=True)
 
 # 3. Create parser
 parser = StrOutputParser()
